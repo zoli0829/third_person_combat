@@ -22,10 +22,9 @@ public class PlayerAttackingState : PlayerBaseState
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
-
         FaceTarget();
 
-        float normalizedTime = GetNormalizedTime(stateMachine.Animator);
+        float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
         if(normalizedTime < 1f)
 

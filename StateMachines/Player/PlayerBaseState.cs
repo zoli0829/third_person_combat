@@ -35,10 +35,12 @@ public abstract class PlayerBaseState : State
 
     protected void ReturnToLocomotion()
     {
+        // If we have a target go to the targeting state
         if(stateMachine.Targeter.CurrentTarget != null)
         {
             stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
         }
+        // Else go to the free look state
         else
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));

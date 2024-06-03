@@ -13,7 +13,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action JumpEvent;
     public event Action DodgeEvent;
     public event Action TargetEvent;
-    public event Action CancelEvent;
 
     private Controls controls;
 
@@ -62,14 +61,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
         // like emitting a signal in Godot
         TargetEvent?.Invoke();
-    }
-
-    public void OnCancel(InputAction.CallbackContext context)
-    {
-        if (!context.performed) { return; }
-
-        // like emitting a signal in Godot
-        CancelEvent?.Invoke();
     }
 
     public void OnAttack(InputAction.CallbackContext context)
