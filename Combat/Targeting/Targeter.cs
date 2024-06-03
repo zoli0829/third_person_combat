@@ -8,7 +8,6 @@ public class Targeter : MonoBehaviour
     [SerializeField] private CinemachineTargetGroup cineTargetGroup;
 
     private Camera mainCamera;
-
     private List<Target> targets = new List<Target>();
     public Target CurrentTarget { get; private set; }
 
@@ -50,7 +49,7 @@ public class Targeter : MonoBehaviour
             Vector2 viewPos = mainCamera.WorldToViewportPoint(target.transform.position);
 
             // make sure the target is visible on the screen
-            if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
+            if (!target.GetComponentInChildren<Renderer>().isVisible)
             {
                 continue;
             }

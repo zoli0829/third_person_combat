@@ -9,7 +9,7 @@ public abstract class StateMachine : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-            currentState?.Tick(Time.deltaTime);
+        currentState?.Tick(Time.deltaTime);
     }
 
     public void SwitchState(State newState)

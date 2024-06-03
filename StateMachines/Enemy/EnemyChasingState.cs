@@ -46,10 +46,13 @@ public class EnemyChasingState : EnemyBaseState
 
     private void MoveToPlayer(float deltaTime)
     {
-        // setting the destination to be the player
-        stateMachine.Agent.destination = stateMachine.Player.transform.position;
-        // moving towards the player
-        Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltaTime);
+        if(stateMachine.Agent.isOnNavMesh)
+        {
+            // setting the destination to be the player
+            stateMachine.Agent.destination = stateMachine.Player.transform.position;
+            // moving towards the player
+            Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltaTime);
+        }
         // making sure the nav mesh agent and the character controller are in sync
         stateMachine.Agent.velocity = stateMachine.CharacterController.velocity;
         // this is optional
@@ -58,6 +61,9 @@ public class EnemyChasingState : EnemyBaseState
 
     private bool IsInAttackRange()
     {
+        if(stateMachine.Player.isDead) 
+            return false;
+
         // we square here because its easier to compute
         float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
 
